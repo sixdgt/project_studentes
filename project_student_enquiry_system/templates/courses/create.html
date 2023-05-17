@@ -8,5 +8,12 @@ Course | CREATE
 <div class="container">
     <a href="{% url 'course-index' %}" class="btn btn-primary btn-sm mt-3 mb-2">Back</a>
     <h1>This is Course Create Page</h1>
-</div>
+    <hr>
+    <form action="#" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" class="btn btn-sm btn-primary" value="Add Course">
+    </form>
+</div>/
 {% endblock %}

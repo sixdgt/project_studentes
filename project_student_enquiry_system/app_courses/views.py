@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from app_courses.forms import CourseCreateForm
 # Create your views here.
 def course_index(request):
     context = {
@@ -9,7 +9,9 @@ def course_index(request):
     return render(request, 'courses/index.html', context)
 
 def course_create(request):
-    return render(request, 'courses/create.html')
+    form = CourseCreateForm()
+    context = {"form": form}
+    return render(request, 'courses/create.html', context)
 
 def course_edit(request):
     return render(request, 'courses/edit.html')

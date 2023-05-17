@@ -1,0 +1,20 @@
+{% extends 'layouts/master.html' %}
+
+{% block title %}
+SES | Student Create
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Student Create Form</h1>
+    <hr>
+    <div class="card p-5">
+        <form action="#" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <input type="submit" value="Add Student" class="btn btn-sm btn-primary">
+        </form>
+    </div>
+</div>
+{% endblock %}
