@@ -9,7 +9,7 @@ Course | CREATE
     <a href="{% url 'course-index' %}" class="btn btn-primary btn-sm mt-3 mb-2">Back</a>
     <h1>This is Course Create Page</h1>
     <hr>
-    <form action="#" method="post">
+    <form action="{% url 'course-create' %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
 
