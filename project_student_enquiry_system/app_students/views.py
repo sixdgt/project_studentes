@@ -25,6 +25,7 @@ def student_index(request):
     return render(request, "students/index.html", context)
 
 def student_edit(request, id):
+    
     return render(request, 'students/edit.html')
 
 def student_show(request, id):

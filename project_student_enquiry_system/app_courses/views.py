@@ -31,8 +31,27 @@ def course_create(request):
 
     return render(request, 'courses/create.html', context)
 
-def course_edit(request):
-    return render(request, 'courses/edit.html')
+def course_edit(request, id):
+    course = CourseModel.objects.get(id=id)
+    context = {"course": course}
+    return render(request, 'courses/edit.html', context)
 
-def course_show(request):
-    return render(request, 'courses/show.html')
+def course_update(request):
+    if request.method == "POST":
+        instance = CourseModel.objects.get(id=request.POST.get('id'))
+        data = CourseCreateForm(data=request.POST, instance=instance)
+        if data.is_valid():
+            data.save()
+            return redirect("course-index")
+        return redirect("course-index")
+    return redirect("course-index")
+
+def course_show(request, id):
+    course = CourseModel.objects.get(id=id)
+    context = {"course": course}
+    return render(request, 'courses/show.html', context)
+
+def course_delete(request, id):
+    course = CourseModel.objects.get(id=id)
+    course.delete()
+    return redirect("course-index")
