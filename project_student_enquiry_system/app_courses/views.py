@@ -2,8 +2,11 @@ from django.shortcuts import render, redirect
 from app_courses.forms import CourseCreateForm
 from app_courses.models import CourseModel
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib import auth
 
 # Create your views here.
+@login_required(login_url='/login')
 def course_index(request):
     courses = CourseModel.objects.all()
 
@@ -14,6 +17,7 @@ def course_index(request):
     }
     return render(request, 'courses/index.html', context)
 
+@login_required(login_url='/login')
 def course_create(request):
     form = CourseCreateForm()
     context = {"form": form}
@@ -32,11 +36,13 @@ def course_create(request):
 
     return render(request, 'courses/create.html', context)
 
+@login_required(login_url='/login')
 def course_edit(request, id):
     course = CourseModel.objects.get(id=id)
     context = {"course": course}
     return render(request, 'courses/edit.html', context)
 
+@login_required(login_url='/login')
 def course_update(request):
     if request.method == "POST":
         instance = CourseModel.objects.get(id=request.POST.get('id'))
@@ -48,11 +54,13 @@ def course_update(request):
         return redirect("course-index")
     return redirect("course-index")
 
+@login_required(login_url='/login')
 def course_show(request, id):
     course = CourseModel.objects.get(id=id)
     context = {"course": course}
     return render(request, 'courses/show.html', context)
 
+@login_required(login_url='/login')
 def course_delete(request, id):
     course = CourseModel.objects.get(id=id)
     course.delete()
