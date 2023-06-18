@@ -10,7 +10,7 @@ Student | UPDATE
     <h1>Update the Student</h1>
     <hr>
     <div class="card p-5 mt-3">
-        <form action="#" method="post">
+        <form action="#" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" class="btn btn-sm btn-primary col-12" value="Update Course">
