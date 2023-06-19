@@ -3,7 +3,6 @@ from django.views import View
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
@@ -64,7 +63,7 @@ class RegisterView(View):
 
 class DashboardView(View):
     def get(self, request):
-        if request.user is None:
+        if not request.user.is_authenticated:
             messages.error(request, 'Unauthorized access')
             return redirect('login')
         return render(request, 'dashboard.html')
